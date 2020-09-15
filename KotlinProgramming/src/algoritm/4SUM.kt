@@ -1,3 +1,4 @@
+package algoritm/*
 package algoritm
 
 import java.util.*
@@ -57,3 +58,4 @@ fun Array<Int>.getMin(): Int{
     return min
 }
 
+*/
