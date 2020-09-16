@@ -26,8 +26,10 @@ class SmartPhone(val model: String){
 
 fun main() {
     val mySdcard = SmartPhone("S7").ExternalStorage(32)
-    val mytest = SmartPhone("test")
-    
+    val galaxy = SmartPhone("S7")
+    println(galaxy.powerOn())
+
+
     println(mySdcard.gerInfo())
 
 }
