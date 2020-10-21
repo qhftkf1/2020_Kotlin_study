@@ -1,3 +1,5 @@
+
+
 package chap05.section5.burglar
 
 open class Car protected constructor(_year: Int, _model: String, _power: String, _wheel: String){
