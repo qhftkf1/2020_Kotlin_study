@@ -7,15 +7,15 @@ class Pond(_name: String, _members: MutableList<Duck>){
 }
 
 class Duck(val name: String)
-    fun main(){
-        val pond = Pond("myFavorite")
-        val duck1 = Duck("Duck1")
-        val duck2 = Duck("Duck2")
+fun main(){
+    val pond = Pond("myFavorite")
+    val duck1 = Duck("Duck1")
+    val duck2 = Duck("Duck2")
 
-        pond.members.add(duck1)
-        pond.members.add(duck2)
+    pond.members.add(duck1)
+    pond.members.add(duck2)
 
-        for(duck in pond.members){
-            println(duck.name)
-        }
+    for(duck in pond.members){
+        println(duck.name)
     }
+}

@@ -1,55 +1,36 @@
-package algoritm
+class Solution {
+    fun solution(n: Int, delivery: Array<IntArray>): String {
+        var answer = ""
+        var check = arrayOfNulls<Int>(n + 1)
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.lang.Integer.max
-import java.lang.Math.min
-
-fun main() {
-    val br = BufferedReader(InputStreamReader(System.`in`))
-    val N = br.readLine().toInt()
-    val balls = br.readLine().toString()
-    var frontCnt = 0
-    var backCnt = 0
-    var ballCnt = 0
-    var rCnt = 0
-    var bCnt = 0
-    var elseCnt = 0
-
-    for(i in 0 until N){
-        if (balls[0] != balls[i])
-            break
-        frontCnt++
-    }
-    for(i in N - 1 downTo 0){
-        if (balls[N - 1] != balls[i])
-            break
-        backCnt++
-    }
-    if ((balls[0] == 'B' && balls[N - 1] == 'B') || (balls[0] == 'R' && balls[N - 1] == 'R')) {
-        for(i in 0 until N) {
-            if(balls[0] == balls[i])
-                ballCnt++
+        for(i in 0 until delivery.size){
+            if(delivery[i][2] == 1){
+                check[delivery[i][0]] = 1
+                check[delivery[i][1]] = 1
+            }
+        }
+        for(i in 0 until delivery.size){
+            if(delivery[i][2] == 0){
+                if(check[delivery[i][0]] == 1)
+                    check[delivery[i][1]] = 0
+                else if(check[delivery[i][1]] == 1)
+                    check[delivery[i][0]] = 0
+            }
+        }
+        for(i in 0 until delivery.size){
+            if(!(check[delivery[i][0]] == 0 || check[delivery[i][0]] == 1))
+                check[delivery[i][0]] = 2
+            if(!(check[delivery[i][1]] == 0 || check[delivery[i][1]] == 1))
+                check[delivery[i][1]] = 2
+        }
+        for(i in 1 until n + 1){
+            if(check[i] == 0)
+                answer += 'X'
+            else if(check[i] == 1)
+                answer += 'O'
             else
-                elseCnt++;
+                answer += '?'
         }
-        ballCnt -= max(frontCnt, backCnt)
-        ballCnt = min(ballCnt, elseCnt)
-    }else {
-        for (i in 0 until N) {
-            if (balls[i] == 'B')
-                bCnt++
-            else
-                rCnt++;
-        }
-        if (balls[0] == 'B') {
-            bCnt -= frontCnt
-            rCnt -= backCnt
-        }else{
-            bCnt -= backCnt
-            rCnt -= frontCnt
-        }
-        ballCnt = min(bCnt, rCnt)
+        return answer
     }
-    println(ballCnt)
 }
